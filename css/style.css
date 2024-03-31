@@ -49,3 +49,26 @@ input {
   text-align: center;
   font-family: 'Rubik', sans-serif;
 }
+
+
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 10px;
+  max-width: 400px;
+}
+
+ul li {
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  background-color: #FFFDF8;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  flex-grow: 1;
+  text-align: center;
+
+
+}
