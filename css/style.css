@@ -2,7 +2,10 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'Rubik', sans-serif;
-  background-color: #EEF0F4;
+  background-color: #badee0;
+  color: #432000;
+  user-select: none;
+
 }
 
 .container {
@@ -27,7 +30,7 @@ button {
   margin: 1em;
   /* text-align: center; */
   color: #FDFDFD;
-  background-color: #AC485A;
+  background-color: #548e91;
   border: 0;
   padding: 15px;
   border-radius: 8px;
@@ -41,7 +44,7 @@ input {
   /* width: 15em; */
 
   color: #432000;
-  background-color: #DCE1EB;
+  background-color: #FDFDFD;
   border: 0;
   padding: 15px;
   border-radius: 8px;
@@ -51,13 +54,18 @@ input {
 }
 
 
+#add-button:hover {
+  background-color: #16383a;
+}
+
 ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   list-style: none;
   gap: 10px;
-  max-width: 400px;
+  max-width: 320px;
+  padding: 0px;
 }
 
 ul li {
@@ -71,4 +79,9 @@ ul li {
   text-align: center;
 
 
+}
+
+li:hover {
+  background-color: #FFECC7;
+  cursor: pointer;
 }
