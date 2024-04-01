@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 
 const addBtn = document.getElementById("add-button")
@@ -22,14 +22,22 @@ addBtn.addEventListener("click", function() {
 })
 
 onValue(shoppingListInDb, function(snapshot) {
-  let itemsArr = Object.entries(snapshot.val())
-  clearShoppingListEl()
-  for (const item of itemsArr) {
-    let currentItem = item
-    let currentItemID = itemsArr[0]
-    let currentItemValue = currentItem[1]
-    renderList(currentItemValue)
+
+  if (snapshot.exists()) {
+
+    let itemsArr = Object.entries(snapshot.val())
+    clearShoppingListEl()
+    for (const item of itemsArr) {
+      let currentItem = item
+      let currentItemID = itemsArr[0]
+      let currentItemValue = currentItem[1]
+      renderList(currentItem)
+    }
+  } else {
+    shoppingListEl.innerHTML = "<strong> No items right now </strong>"
   }
+
+
 })
 
 function clearShoppingListEl() {
@@ -39,12 +47,18 @@ function clearInput() {
   inputField.value = ""
 }
 
-function renderList(item) {
-  let itemID = item[0]
-  let itemValue = item[1]
+function renderList(itemAtt) {
+  let itemID = itemAtt[0]
+  let itemValue = itemAtt[1]
 
   let newEl = document.createElement("li")
   newEl.textContent = itemValue
   shoppingListEl.append(newEl)
+
+  newEl.addEventListener("dblclick", function() {
+    let exactLocation = ref(database, `shoppingList/${itemID}`)
+    remove(exactLocation)
+
+  })
 
 }
